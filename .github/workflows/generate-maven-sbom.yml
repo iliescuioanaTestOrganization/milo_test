@@ -8,7 +8,7 @@ on:
     inputs:
       version:
         description: 'Version'
-        default: 'main'
+        default: '1.0'
         required: true
 
 env:
@@ -49,7 +49,7 @@ jobs:
         id: version
         shell: bash
         run: |
-          VERSION="$(jq -r '.metadata.component.version' < ./${{ env.PRODUCT_PATH }}/target/bom.json)"
+          VERSION="$(jq -r '.metadata.component.version' < ${{ env.PRODUCT_PATH }}/target/bom.json)"
           echo "PROJECT_VERSION=$VERSION" >> $GITHUB_OUTPUT
           echo "Product version is: $VERSION"
 
